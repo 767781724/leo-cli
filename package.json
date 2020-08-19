@@ -1,17 +1,21 @@
 {
-  "name": "leo-cli",
-  "version": "1.0.0",
-  "description": "",
+  "name": "leo-react-cli",
+  "version": "1.0.4",
+  "description": "A scaffolding tool",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "leo-cli": "./index.js"
+    "leo-react-cli": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/767781724/leo-cli.git"
   },
   "author": "Leo",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^6.0.0",
     "download-git-repo": "^3.0.2",

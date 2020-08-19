@@ -35,7 +35,7 @@ if (program.init && typeof program.init === 'string') {
         type: "list",
         name: "types",
         message: "Please choose a scaffold",
-        choices: ['leo-multiple-page', 'demo'],
+        choices: ['leo-multiple-page', 'leo-backstage'],
         pageSize: 4
     }]).then(res => {
         const spinner = ora('Pulling template...').start();
