@@ -1,0 +1,7 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "downlevelIteration":false,
+    },
+    "exclude": ["config","public","node_modules"]
+}
