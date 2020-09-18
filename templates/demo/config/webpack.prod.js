@@ -1,5 +1,5 @@
 const { merge } = require('webpack-merge');
-const {env,config} = require('../../../webpack.common');
+const {env,config} = require('../../../../webpack.common');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
@@ -24,8 +24,11 @@ const postcss= {
         sourceMap: false
     }
 };
+let  _entry={};
+_entry[env.project]= path.resolve(__dirname, '../src/index.tsx');
+
 module.exports = merge(config, {
-    entry: { unsubscribe: path.resolve(__dirname, '../src/index.tsx') },
+    entry: _entry,
     mode: 'production',
     module: {
         rules: [

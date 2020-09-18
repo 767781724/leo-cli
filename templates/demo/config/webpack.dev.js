@@ -1,14 +1,15 @@
 const { merge } = require('webpack-merge');
-const { env, config } = require('../../../webpack.common');
+const { env, config } = require('../../../../webpack.common');
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const postcssNormalize = require('postcss-normalize');
 
-// [,path.resolve(__dirname,'./dev-client.js')]
+let  _entry={};
+_entry[env.project]= path.resolve(__dirname, '../src/index.tsx');
 module.exports = merge(config, {
-    entry: { unsubscribe: path.resolve(__dirname, '../src/index.tsx') },
+    entry: _entry,
     mode: 'development',
     devtool: 'inline-source-map',
     module: {
@@ -61,7 +62,7 @@ module.exports = merge(config, {
             template: path.join(__dirname, '../public/index.html'),
             chunks: [env.project, "common", "vendors", "manifest"],
             templateParameters: {
-                'favicon': path.join(env.project, '/favicon.ico')
+                'favicon': '/favicon.ico'
             }
         }),
         new CopyPlugin({
