@@ -1,6 +1,6 @@
 {
   "name": "leo-react-cli",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A scaffolding tool",
   "main": "index.js",
   "scripts": {
