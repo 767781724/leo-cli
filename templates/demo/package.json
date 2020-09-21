@@ -4,10 +4,10 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "dev": "node ../../../server/start.js --project=unsubscribe --APP_ENV=test",
-    "build:test": "node ../../../server/build.js --project=unsubscribe --APP_ENV=test",
-    "build:beta": "node ../../../server/build.js --project=unsubscribe --APP_ENV=beta",
-    "build:prod": "node ../../../server/build.js --project=unsubscribe --APP_ENV=prod"
+    "dev": "node ../../../server/start.js --project=demo --APP_ENV=test",
+    "build:test": "node ../../../server/build.js --project=demo --APP_ENV=test",
+    "build:beta": "node ../../../server/build.js --project=demo --APP_ENV=beta",
+    "build:prod": "node ../../../server/build.js --project=demo --APP_ENV=prod"
   },
   "keywords": [],
   "author": "",

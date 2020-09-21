@@ -30,6 +30,15 @@ const changePackage = (path) => {
         let _data = JSON.parse(data.toString());
         _data.name = path;
         _data.version = '1.0.0';
+        if(program.create){
+            const _script={
+                'dev': `node ../../../server/start.js --project=${path} --APP_ENV=test`,
+                'build:test': `node ../../../server/build.js --project=${path} --APP_ENV=test`,
+                'build:beta': `node ../../../server/build.js --project=${path} --APP_ENV=beta`,
+                'Ïbuild:prodÏ': `node ../../../server/build.js --project=${path} --APP_ENV=prod`
+            }
+            _data.scripts=_script;
+        }
         let str = JSON.stringify(_data, null, 4);
         fs.writeFile(`${process.cwd()}/${path}/package.json`, str, function (err) {
             if (err) throw err;
