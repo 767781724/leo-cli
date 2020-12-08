@@ -44,6 +44,15 @@ const changePackage = (path) => {
             if (err) throw err;
         })
     })
+    fs.readFile(`${process.cwd()}/${path}/public/manifest.json`, (err, data) => {
+        if (err) throw err;
+        let _data = JSON.parse(data.toString());
+        _data.name = path;
+        let str = JSON.stringify(_data, null, 4);
+        fs.writeFile(`${process.cwd()}/${path}/public/manifest.json`, str, function (err) {
+            if (err) throw err;
+        })
+    })
 }
 
 if (program.init && typeof program.init === 'string') {
