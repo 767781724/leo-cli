@@ -35,7 +35,7 @@ const changePackage = (path) => {
                 'dev': `node ../../../server/start.js --project=${path} --APP_ENV=test`,
                 'build:test': `node ../../../server/build.js --project=${path} --APP_ENV=test`,
                 'build:beta': `node ../../../server/build.js --project=${path} --APP_ENV=beta`,
-                'Ïbuild:prodÏ': `node ../../../server/build.js --project=${path} --APP_ENV=prod`
+                'build:prod': `node ../../../server/build.js --project=${path} --APP_ENV=prod`
             }
             _data.scripts=_script;
         }
