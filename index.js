@@ -59,7 +59,7 @@ if (program.init && typeof program.init === 'string') {
     inquirer.prompt([{
         type: "list",
         name: "types",
-        message: "Please choose a scaffold",
+        message: "请选择脚手架",
         choices: ['leo-multiple-page', 'leo-backstage'],
         pageSize: 4
     }]).then(res => {
@@ -76,28 +76,39 @@ if (program.init && typeof program.init === 'string') {
         }
     })
 }else if(program.create && typeof program.create === 'string'){
+
+    inquirer.prompt([{
+        type: "list",
+        name: "types",
+        message: "请选择需要创建的项目文件",
+        choices: ['sub_project', 'gulp_project', 'component_project'],
+    }]).then(res=>{
     // 获取将要构建的项目根目录
-    const projectPath = path.resolve(program.create);
-    const cwd=path.join(__dirname,'./templates/demo');
+        const projectPath = path.resolve(program.create);
+        const cwd=path.join(__dirname,`./templates/${res.types}`);
 
-    // 从demo目录中读取除node_modules目录下的所有文件并筛选处理
-    vfs.src(['**/*', '!node_modules/**/*'], { cwd: cwd, dot: true }).
-    pipe(through.obj(function (file, enc, callback) {
-    if (!file.stat.isFile()) {
-      return callback();
-    }
+        // 从demo目录中读取除node_modules目录下的所有文件并筛选处理
+        vfs.src(['**/*', '!node_modules/**/*'], { cwd: cwd, dot: true }).
+        pipe(through.obj(function (file, enc, callback) {
+            if (!file.stat.isFile()) {
+              return callback();
+            }
 
-    this.push(file);
-    return callback();
-  }))
-    // 将从demo目录下读取的文件流写入到之前创建的文件夹中
-    .pipe(vfs.dest(projectPath))
-    .on('end', function () {
-        // spinner.success("download completed")
-        changePackage(program.create)
-        console.log('ok')
+            this.push(file);
+            return callback();
+        }))
+        // 将从demo目录下读取的文件流写入到之前创建的文件夹中
+        .pipe(vfs.dest(projectPath))
+        .on('end', function () {
+            // spinner.success("download completed")
+            if(res.types==='sub_project'){
+                changePackage(program.create)
+            }
+            console.log('ok')
+        })
+        .resume();
     })
-    .resume();
+    
 }else {
     console.error((error('Please enter the name after init.')))
 }
