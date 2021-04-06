@@ -15,9 +15,9 @@ const success = chalk.blueBright;
 const error = chalk.bold.red;
 
 const gitArr = {
-    'leo-design-pro': 'direct:https://github.com/767781724/leo-design-pro.git',
-    'leo-multiple-page': 'direct:https://github.com/767781724/leo-multiple-page.git',
-    'leo-backstage': 'direct:https://github.com/767781724/react-antd-back.git'
+    'leo-design-pro': 'direct:https://github.com/767781724/leo-design-pro.git#main',
+    'leo-multiple-page': 'direct:https://github.com/767781724/leo-multiple-page.git#main',
+    'leo-backstage': 'direct:https://github.com/767781724/react-antd-back.git#main'
 }
 program.version('0.0.1')
 .option('-i,--init [name]', 'initialize the platform')
@@ -51,9 +51,10 @@ if (program.init && typeof program.init === 'string') {
             downloadGit(gitArr[res.types], program.init, { clone: true }, (err) => {
                 if (!err) {
                     spinner.succeed(success('Pull successfully'));
-                    changePackage(program.init)
+                    // changePackage(program.init)
                 } else {
-                    spinner.fail('Pull failed');
+                  console.log(err)
+                    spinner.fail(err);
                 }
             })
         }
