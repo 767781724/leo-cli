@@ -51,7 +51,7 @@ if (program.init && typeof program.init === 'string') {
             downloadGit(gitArr[res.types], program.init, { clone: true }, (err) => {
                 if (!err) {
                     spinner.succeed(success('Pull successfully'));
-                    // changePackage(program.init)
+                    changePackage(program.init)
                 } else {
                   console.log(err)
                     spinner.fail(err);
