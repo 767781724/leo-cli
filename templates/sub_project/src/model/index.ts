@@ -1,6 +1,5 @@
-/*Data*/
 export interface SubscrbeModel {
-    type_id: number;
+    typeId: number;
     status: number;
     title: string;
     desc: string

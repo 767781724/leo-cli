@@ -1,37 +1,5 @@
 $prefix:home;
 
-@mixin fontStyle($size:14px, $weight:400, $color:#000, $height:20px) {
-    font-size: $size;
-    font-weight: $weight;
-    text-align: left;
-    color: $color;
-    line-height: $height
-}
-
 .#{$prefix} {
-    width: 100%;
-    min-height: 100vh;
-    background-color: #f4f4f4;
-    overflow: hidden;
-
-    &-main {
-        width: 91%;
-        background-color: #fff;
-        margin: 16px auto;
-        padding: 16px;
-        >h1 {
-            @include fontStyle(18px, 600, #000, 20px);
-            margin-bottom: 10px;
-        }
-
-        >p {
-            @include fontStyle(14px, 400, #999, 18px);
-        }
-
-        >hr {
-            width: 100%;
-            height: 1px;
-        }
-    }
-
+    background-color: #fff;
 }

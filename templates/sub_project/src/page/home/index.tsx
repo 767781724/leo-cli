@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './index.scss';
+import { Basicpage } from 'leo-design';
 
-const PREFIX = "home";
+const PREFIX = 'home';
+const HomePage = () => {
+  return (
+    <Basicpage className={PREFIX}>
+      <div className={`${PREFIX}-main`}>
+        <h1> Hello world! </h1>
+      </div>
+    </Basicpage>
+  );
+};
 
-function HomePage() {
-
-    return (
-        <div className={PREFIX}>
-            <div className={`${PREFIX}-main`}>
-                <h1> Hello world! </h1>
-            </div>
-        </div>
-    )
-}
-
-export default HomePage
+export default HomePage;

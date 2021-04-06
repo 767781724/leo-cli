@@ -15,6 +15,7 @@ const success = chalk.blueBright;
 const error = chalk.bold.red;
 
 const gitArr = {
+    'leo-design-pro': 'direct:https://github.com/767781724/leo-design-pro.git',
     'leo-multiple-page': 'direct:https://github.com/767781724/leo-multiple-page.git',
     'leo-backstage': 'direct:https://github.com/767781724/react-antd-back.git'
 }
@@ -30,26 +31,8 @@ const changePackage = (path) => {
         let _data = JSON.parse(data.toString());
         _data.name = path;
         _data.version = '1.0.0';
-        if(program.create){
-            const _script={
-                'dev': `node ../../../server/start.js --project=${path} --APP_ENV=test`,
-                'build:test': `node ../../../server/build.js --project=${path} --APP_ENV=test`,
-                'build:beta': `node ../../../server/build.js --project=${path} --APP_ENV=beta`,
-                'build:prod': `node ../../../server/build.js --project=${path} --APP_ENV=prod`
-            }
-            _data.scripts=_script;
-        }
         let str = JSON.stringify(_data, null, 4);
         fs.writeFile(`${process.cwd()}/${path}/package.json`, str, function (err) {
-            if (err) throw err;
-        })
-    })
-    fs.readFile(`${process.cwd()}/${path}/public/manifest.json`, (err, data) => {
-        if (err) throw err;
-        let _data = JSON.parse(data.toString());
-        _data.name = path;
-        let str = JSON.stringify(_data, null, 4);
-        fs.writeFile(`${process.cwd()}/${path}/public/manifest.json`, str, function (err) {
             if (err) throw err;
         })
     })
@@ -60,7 +43,7 @@ if (program.init && typeof program.init === 'string') {
         type: "list",
         name: "types",
         message: "请选择脚手架",
-        choices: ['leo-multiple-page', 'leo-backstage'],
+        choices: Object.keys(gitArr),
         pageSize: 4
     }]).then(res => {
         const spinner = ora('Pulling template...').start();
@@ -86,25 +69,22 @@ if (program.init && typeof program.init === 'string') {
     // 获取将要构建的项目根目录
         const projectPath = path.resolve(program.create);
         const cwd=path.join(__dirname,`./templates/${res.types}`);
-
         // 从demo目录中读取除node_modules目录下的所有文件并筛选处理
         vfs.src(['**/*', '!node_modules/**/*'], { cwd: cwd, dot: true }).
         pipe(through.obj(function (file, enc, callback) {
             if (!file.stat.isFile()) {
               return callback();
             }
-
             this.push(file);
             return callback();
         }))
         // 将从demo目录下读取的文件流写入到之前创建的文件夹中
         .pipe(vfs.dest(projectPath))
         .on('end', function () {
-            // spinner.success("download completed")
             if(res.types==='sub_project'){
                 changePackage(program.create)
             }
-            console.log('ok')
+            // spinner.success("download completed")
         })
         .resume();
     })
