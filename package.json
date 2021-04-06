@@ -1,13 +1,13 @@
 {
   "name": "leo-react-cli",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A scaffolding tool",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "leo-react-cli": "./index.js"
+    "leo-react-cli": "index.js"
   },
   "repository": {
     "type": "git",
